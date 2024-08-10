@@ -1,27 +1,30 @@
-import logo from './logo.svg';
+import Inicio from './componentes/Inicio.js';
+import Login from './componentes/Login';
+import Registro from './componentes/Registro.js';
+import './bootstrap.min.css';
 import './App.css';
-import Info from './componentes/Info';
+import store  from './store/Index.js';
+import { Provider } from 'react-redux';
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      <Info/>
-      </header>
+    <Provider store={store}>
 
-    </div>
+      <BrowserRouter>
+        <Routes>
+
+          <Route path='/' element={<Inicio/>}>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/registro' element={<Registro/>}/>
+          </Route>
+
+        </Routes>
+
+      </BrowserRouter>
+
+    </Provider>
   );
 }
 
